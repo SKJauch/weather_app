@@ -1,13 +1,13 @@
 var weatherEl = document.getElementById("weather");
 var forecastEl = document.getElementById("forecast");
-var history = document.getElementById("history");
+var historyEl = document.getElementById("history");
 var searchBtn = document.getElementById("search-button");
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
 function getApi() {
   var searchValue = document.getElementById("search-city").value;
-  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${apiKey}&units=imperial`;
+  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchV}&appid=${apiKey}&units=imperial`;
 
   fetch(requestUrl)
   .then(function (response) {
@@ -16,24 +16,43 @@ function getApi() {
   .then(function (data) {
     console.log(data);
     $('#search-city').val('')
+  })
+}
 
   //search temperature
-  var temperature = document.createElement("div");
-  temperature.textContent = "Temperature Is: " + data.main.temperature + " F";
-  temperature.classList = "current-list-group";
+  //var temp = document.createElement("div");
+  //temp.textContent = "Temperature Is: " + data.main.temp + " F";
+  //temp.classList = "current-list-group";
+
+  fetch('requesturl')
+  .then(response => response.json())
+  .then(data => {
+    const temperature = document.createElement("div");
+    temperature.textContent = "Temperature Is: " + data.main.temp + " F";
+    temperature.classList = "current-list-group";
+    // add the temperature element to the DOM
+    document.body.appendChild(temperature);
+  })
+  .catch(error => console.error(error));
+
   //by city
   var cityEl = document.createElement('h2');
   cityEl.textContent = data.name;
+  cityEl.classList = "current-list-group";
+
+
   //wind
   var windSpeed = document.createElement("div");
   windSpeed.textContent = "Wind Speed Is: " + data.wind.speed + "MPH ";
   windSpeed.classList = "current-list-group";
+
   //humidity
   var humidity = document.createElement("div");
   humidity.textContent = "Humidity Is: " + data.main.humidity + "% ";
   humidity.classList = "current-list-group";
+
   //icon
-  var iconEl = document.createElement("img");
+  var iconEl = document.createElement(`img`);
   iconEl.setAttribute(
     "src",
     'https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'
@@ -41,30 +60,32 @@ function getApi() {
   cityEl.appendChild(iconEl);
   
   //current date
-  var currentDate = document.createElement("div")
-        currentDate.textContent = " (" + moment(data.value).calendar("MMM D, YYYY") + ") ";
-        cityEl.appendChild(currentDate);
+  function todayDate() {
+    var today = dayjs();
+    $("#currentDate").text(today.format("dddd - MMMM D, YYYY"));
   
-  
+  }
   //put together
   weatherEl.innerHTML = "";
   weatherEl.append(cityEl, temperature, humidity, windSpeed);
-  var long = data.coord.long;
-  var lati = data.coord.lati;
-  getWeather(lati, long);
+  var lon = data.coord.lon;
+  var lat = data.coord.lat;
+  getWeather(lat, lon);
+
+
   //cities
   var citySearch = document.createElement('h2');
   citySearch.textContent = data.name;
   window.localStorage.setItem("h2", data.name);
   window.localStorage.getItem("h2");
   historyEl.append(citySearch);
-  })
-}
+
+
   
 
   //UV
-function getWeather(lati, long) {
-  var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lati}&lon=${long}`;
+function getWeather(lat, lon) {
+  var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
   fetch(queryURL)
       .then(function (response) {
         return response.json();
@@ -72,7 +93,7 @@ function getWeather(lati, long) {
       .then(function (data) {
         console.log(data)
 
-  //var uvIndex = document.createElement("div");
+  var uvIndex = document.createElement("div");
   uvIndex.textContent = "UV Index: " + data.value;
   console.log(data.value);
   uvIndex.classList = "current-list-group";
@@ -96,14 +117,12 @@ function getForecast() {
         div.setAttribute("class", "col-md-2  col-sm-4");
 
         //date
-        var forecastCurrentDate = document.createElement("div");
-        forecastCurrentDate.textContent = moment(data.list[i].dt_txt).calendar(
-          "MMM D, YYYY"
-        );
+        var forecastCurrentDate = document.createElement("div")
+        forecastCurrentDate.textContent = moment(data.list[i].dt_txt).calendar("MMM D, YYYY");
 
         //temp
         var forecastTemp = document.createElement("div");
-        forecastTemp.textContent = "Temp: " + data.list[i].main.temperature + " F";
+        forecastTemp.textContent = "Temperature: " + data.list[i].main.temp + " F";
         forecastTemp.classList = "five-day-list-group";
 
         //humidity
@@ -132,5 +151,5 @@ function getForecast() {
 searchBtn.addEventListener("click", getApi);
 searchBtn.addEventListener("click", getForecast);
 window.addEventListener("load", function () {
-window.localStorage.getItem("history");
-});
+    window.localStorage.getItem("historyEl");
+})
