@@ -7,18 +7,15 @@ var apiKey = '763656d325fd4ae7170f7ec265c5aef0';
 
 function getApi() {
     var searchValue = document.getElementById('search-city').value;
-    var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${APIkey}&units=imperial`;
+    var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${apiKey}&units=imperial`;
   
     fetch(requestUrl)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function(data) {
-        console.log(data);
-        $('#search-city').val('')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+    
  //search temperature       
         var temperature = document.createElement('div')
-        temperature.textContent = "Temperature: " + data.main.temperature + " F";
+        temperature.textContent = "Temperature Is: " + data.main.temperature + " F";
         temperature.classList = "current-list-group";
 //by city
         var cityEl = document.createElement(h2);
@@ -29,7 +26,7 @@ function getApi() {
         windSpeed.classList = "current-list-group";
 //humidity
         var humidity = document.createElement('div');
-        humidity.textContent = "Humidity: " + data.main.humidity + "% ";
+        humidity.textContent = "Humidity Is: " + data.main.humidity + "% ";
         humidity.classList = "current-list-group";
 //icon
         var iconEl = document.createElement("img");
@@ -46,6 +43,24 @@ function getApi() {
         citySearch.textContent = data.name;
         window.localStorage.setItem("h3", data.name);
         window.localStorage.getItem("h3");
-        historyEl.append(citySearch);
-        
-        })
+        historyEl.append(citySearch); 
+
+    };
+
+//UV
+function getUv(lati, long) {
+    var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lati}&lon=${long}`;
+    fetch(queryURL)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  
+        var uvIndex = document.createElement('div');
+        uvIndex.textContent = "UV Index: " + data.value;
+        console.log(data.value)
+        uvIndex.classList = "current-list-group"
+        containerWeather.appendChild(uvIndex)    
+      
+    }  
+
+    
+  searchButton.addEventListener('click', getApi);
