@@ -41,5 +41,11 @@ function getApi() {
         var long = data.coord.long;
         var lati = data.coord.lati;
         getWeather(lati,long);
-//cities                 
+//cities            
+        var citySearch = document.createElement(h2);
+        citySearch.textContent = data.name;
+        window.localStorage.setItem("h3", data.name);
+        window.localStorage.getItem("h3");
+        historyEl.append(citySearch);
+        
         })
