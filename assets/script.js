@@ -2,16 +2,6 @@ var weatherEl = document.getElementById("weather");
 var forecastEl = document.getElementById("forecast");
 var history = document.getElementById("history");
 var searchBtn = document.getElementById("search-button");
-//debug below
-var temperature = document.createElementById("temperature")
-var cityEl = document.createElementById("city")
-var windSpeed = document.createElementById("wind-speed")
-var humidity = document.createElementById("humidity")
-var iconEl = document.createElementById("icon")
-var uvIndex = document.createElement("uv-index")
-var long = data.coord.long;
-var lati = data.coord.lati
-//debug above
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
@@ -28,27 +18,34 @@ function getApi() {
     $('#search-city').val('')
 
   //search temperature
-  //var temperature = document.createElement("div");
+  var temperature = document.createElement("div");
   temperature.textContent = "Temperature Is: " + data.main.temperature + " F";
   temperature.classList = "current-list-group";
   //by city
-  //var cityEl = document.createElement('h2');
+  var cityEl = document.createElement('h2');
   cityEl.textContent = data.name;
   //wind
-  //var windSpeed = document.createElement("div");
+  var windSpeed = document.createElement("div");
   windSpeed.textContent = "Wind Speed Is: " + data.wind.speed + "MPH ";
   windSpeed.classList = "current-list-group";
   //humidity
-  //var humidity = document.createElement("div");
+  var humidity = document.createElement("div");
   humidity.textContent = "Humidity Is: " + data.main.humidity + "% ";
   humidity.classList = "current-list-group";
   //icon
-  //var iconEl = document.createElement("img");
+  var iconEl = document.createElement("img");
   iconEl.setAttribute(
     "src",
-    "https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"
+    'https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png'
   );
-  cityEl.appendChild(currentDate);
+  cityEl.appendChild(iconEl);
+  
+  //current date
+  var currentDate = document.createElement("div")
+        currentDate.textContent = " (" + moment(data.value).calendar("MMM D, YYYY") + ") ";
+        cityEl.appendChild(currentDate);
+  
+  
   //put together
   weatherEl.innerHTML = "";
   weatherEl.append(cityEl, temperature, humidity, windSpeed);
@@ -62,7 +59,7 @@ function getApi() {
   window.localStorage.getItem("h2");
   historyEl.append(citySearch);
   })
-
+}
   
 
   //UV
@@ -106,7 +103,7 @@ function getForecast() {
 
         //temp
         var forecastTemp = document.createElement("div");
-        forecastTemp.textContent = "Temp: " + data.list[i].main.temp + " F";
+        forecastTemp.textContent = "Temp: " + data.list[i].main.temperature + " F";
         forecastTemp.classList = "five-day-list-group";
 
         //humidity
