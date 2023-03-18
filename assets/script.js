@@ -16,12 +16,17 @@ function getApi() {
     .then(function(data) {
         console.log(data);
         $('#search-city').val('')
- //search temperature by city      
+ //search temperature       
         var temperature = document.createElement('div')
         temperature.textContent = "Temperature: " + data.main.temperature + " F";
         temperature.classList = "current-list-group";
-
+//by city
         var cityEl = document.createElement(h2);
         cityEl.textContent = data.name;
-        
+//wind
+        var windSpeed = document.createElement ('div');
+        windSpeed.textContent = "Wind Speed: " + data.wind.speed + "MPH ";
+        windSpeed.classList = "current-list-group";
+//humidity
+                
         })
