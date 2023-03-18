@@ -1,7 +1,17 @@
 var weatherEl = document.getElementById("weather");
 var forecastEl = document.getElementById("forecast");
-var historyEl = document.getElementById("history");
+var history = document.getElementById("history");
 var searchBtn = document.getElementById("search-button");
+//debug below
+var temperature = document.createElementById("temperature")
+var cityEl = document.createElementById("city")
+var windSpeed = document.createElementById("wind-speed")
+var humidity = document.createElementById("humidity")
+var iconEl = document.createElementById("icon")
+var uvIndex = document.createElement("uv-index")
+var long = data.coord.long;
+var lati = data.coord.lati
+//debug above
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
@@ -10,25 +20,30 @@ function getApi() {
   var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${apiKey}&units=imperial`;
 
   fetch(requestUrl)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    $('#search-city').val('')
+
   //search temperature
-  var temperature = document.createElement("div");
+  //var temperature = document.createElement("div");
   temperature.textContent = "Temperature Is: " + data.main.temperature + " F";
   temperature.classList = "current-list-group";
   //by city
-  var cityEl = document.createElement(h2);
+  //var cityEl = document.createElement('h2');
   cityEl.textContent = data.name;
   //wind
-  var windSpeed = document.createElement("div");
+  //var windSpeed = document.createElement("div");
   windSpeed.textContent = "Wind Speed Is: " + data.wind.speed + "MPH ";
   windSpeed.classList = "current-list-group";
   //humidity
-  var humidity = document.createElement("div");
+  //var humidity = document.createElement("div");
   humidity.textContent = "Humidity Is: " + data.main.humidity + "% ";
   humidity.classList = "current-list-group";
   //icon
-  var iconEl = document.createElement("img");
+  //var iconEl = document.createElement("img");
   iconEl.setAttribute(
     "src",
     "https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"
@@ -41,31 +56,38 @@ function getApi() {
   var lati = data.coord.lati;
   getWeather(lati, long);
   //cities
-  var citySearch = document.createElement(h2);
+  var citySearch = document.createElement('h2');
   citySearch.textContent = data.name;
-  window.localStorage.setItem("h3", data.name);
-  window.localStorage.getItem("h3");
+  window.localStorage.setItem("h2", data.name);
+  window.localStorage.getItem("h2");
   historyEl.append(citySearch);
-}
+  })
+
+  
 
   //UV
-function getUv(lati, long) {
+function getWeather(lati, long) {
   var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lati}&lon=${long}`;
   fetch(queryURL)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data)
 
-  var uvIndex = document.createElement("div");
+  //var uvIndex = document.createElement("div");
   uvIndex.textContent = "UV Index: " + data.value;
   console.log(data.value);
   uvIndex.classList = "current-list-group";
-  containerWeather.appendChild(uvIndex);
+  weatherEl.appendChild(uvIndex);
+      
+})
 }
 
   // 5 day forecast
 function getForecast() {
   var searchValue = document.getElementById("search-city").value;
-  var fiveDayUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&units=imperial&appid=${APIkey}`;
+  var fiveDayUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchValue}&units=imperial&appid=${apiKey}`;
 
   fetch(fiveDayUrl)
     .then((response) => response.json())
@@ -110,8 +132,8 @@ function getForecast() {
     });
 }
 
-searchButton.addEventListener("click", getApi);
-searchButton.addEventListener("click", getFiveDay);
+searchBtn.addEventListener("click", getApi);
+searchBtn.addEventListener("click", getForecast);
 window.addEventListener("load", function () {
-  window.localStorage.getItem("history");
+window.localStorage.getItem("history");
 });
