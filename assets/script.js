@@ -25,8 +25,21 @@ function getApi() {
         cityEl.textContent = data.name;
 //wind
         var windSpeed = document.createElement ('div');
-        windSpeed.textContent = "Wind Speed: " + data.wind.speed + "MPH ";
+        windSpeed.textContent = "Wind Speed Is: " + data.wind.speed + "MPH ";
         windSpeed.classList = "current-list-group";
 //humidity
-                
+        var humidity = document.createElement('div');
+        humidity.textContent = "Humidity: " + data.main.humidity + "% ";
+        humidity.classList = "current-list-group";
+//icon
+        var iconEl = document.createElement("img");
+        iconEl.setAttribute("src", 'https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png');
+        cityEl.appendChild(currentDate);
+//put together
+        weatherEl.innerHTML = '';
+        weatherEl.append(cityEl, temperature, humidity, windSpeed);
+        var long = data.coord.long;
+        var lati = data.coord.lati;
+        getWeather(lati,long);
+//cities                 
         })
