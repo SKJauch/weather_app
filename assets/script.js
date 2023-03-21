@@ -50,7 +50,14 @@ function search(city) {
         $("#currentUvi").text(" " + data.current.uvi);
 
 
-        
+        let uvi = data.current.uvi;
+        let currentUv = $(#currentUv);
+        if (uvi <= 3) {
+          currentUv.removeClass().addClass("green");
+        } else if (uvi > 3 && uvi <= 6) {
+          currentUv.removeClass().addClass("orange");
+          
+        }
       })
     })
 }
