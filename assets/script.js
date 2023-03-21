@@ -8,7 +8,7 @@ var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
 function getApi() {
   
-  var requestUrl = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + {apiKey}";
+  var requestUrl = "api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey";
 
   // Make API request using fetch()
   fetch(requestUrl)
@@ -21,6 +21,24 @@ function getApi() {
       // Handle API request error
       console.error(error);
     });
+}
+
+function search(city) {
+  var latLon = "api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=&appid=" + apiKey;
+  fetch(latLon)
+    .then((response) => {
+      return response.json();
+    }).then((data) => {
+        if (!data.length) {
+          return alert("Please Enter City");
+        }
+      return fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + data[0].lat + data[0].lon + "&exclude=hourly,minutely&units=imperial");
+      .then((response) => {
+        return response.json();
+      }).then((data) => {
+        
+      })
+    })
 }
   //search temperature
   //var temp = document.createElement("div");
