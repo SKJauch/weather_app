@@ -3,7 +3,12 @@ var currentIcon = document.getElementById("icon");
 var currentTemp = document.getElementById("current-temp");
 var currentWind = document.getElementById("wind");
 var currentHumidity = document.getElementById("humidity");
-var currentUvi = document.getElementById("uv")
+var currentUvi = document.getElementById("uv");
+var forecastDate = document.getElementById("forecast-date");
+var forecastTemp = document.getElementById("forecast-temp");
+var forecastHumidity = document.getElementById("forecast-humidity");
+var forecastIcon = document.getElementById("forecast-icon");
+var forecastWind =document.getElementById("forecast-wind");
 var weatherEl = document.getElementById("weather");
 var forecastEl = document.getElementById("forecast");
 var historyEl = document.getElementById("history");
@@ -13,7 +18,7 @@ var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
 function getApi() {
   
-  var requestUrl = "api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey";
+  var requestUrl = "api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey"
 
   // Make API request using fetch()
   fetch(requestUrl)
@@ -61,6 +66,18 @@ function search(city) {
         } else {
           currentUv.removeClass()addClass("blue")
         }
+
+        forecastData.forEach(item => {
+          const forecastElement = document.createElement("div");
+          forecastElement.innerHTML = `
+            <div>${item.dt_txt}</div>
+            <div>${item.weather[0].description}</div>
+            <div>${item.main.temp} &deg;C</div>
+          `;
+          document.getElementById("forecast-container").appendChild(forecastElement);
+        });
+      })
+      .catch(error => console.log(error));
       })
     })
 }
