@@ -56,7 +56,10 @@ function search(city) {
           currentUv.removeClass().addClass("green");
         } else if (uvi > 3 && uvi <= 6) {
           currentUv.removeClass().addClass("orange");
-          
+        } else if (uvi > 6 && uvi <= 10) {
+          currentUv.removeClass().addClass("red");
+        } else {
+          currentUv.removeClass()addClass("blue")
         }
       })
     })
