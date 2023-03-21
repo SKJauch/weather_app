@@ -1,69 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather</title>
     <script src="https://kit.fontawesome.com/fa52311ad9.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/style.css"/>
-</head>
-<body>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
     <body class="flex-column min-100-vh">
-        <div class="jumbotron bg-medium text-blue text-center">
-            <div class="container">
-                <h1 class="header">Weather</h1>
-            </div>
-            <p id="currentDate" class="lead"></p>    
+      <div class="jumbotron bg-medium text-blue text-center">
+        <div class="container">
+          <h1 class="header">Weather</h1>
         </div>
-<!--search-responsive-->
-    <main>
+        <p id="currentDate" class="lead"></p>
+      </div>
+      <!--search-responsive-->
+      <main>
         <section class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-md-4 col-xl-3">
+              <div class="card">
+
+                <!--search city-responsive-->
+                <h2 class="card-header">Search by City</h2>
+                <form id="form-city" class="card-body">
+                  <label class="form-box"></label>
+                  <input
+                    placeholder="City"
+                    id="search-city"
+                    type="text"
+                    autofocus="true"
+                    class="form-input"
+                  />
+                  <button
+                    class="btn btn-outline-secondary custom-button"
+                    type="button"
+                    id="search-button"
+                  >
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </button>
+                  <div class="card-body">
+                    <div id="history"></div>
+                  </div>
+                </form>
+                <div class="container col-12 col-md-4 col-xl-3"></div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--current weather-responsive-->
+          <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-md-4 col-xl-3">
-                    <div class="card">
-<!--search city-responsive-->
-                        <h2 class="card-header">Search by City</h2>
-                        <form id="form-city" class="card-body">
-                            <label class="form-box"></label>
-                            <input placeholder="City" id="search-city" type="text" autofocus="true" class="form-input"/>
-                            <button class="btn btn-outline-secondary custom-button" type="button" id="search-button"><i
-                                class="fa fa-search" aria-hidden="true"></i></button>
-                            <div class="card-body">
-                                <div id="history"></div>
-                            </div>
-                        </form>
-                            <div class="container col-12 col-md-4 col-xl-3"></div>
-                    </div>
-                </div>
+              <div class="col-12 col-md-4 col-xl-3">
+                <h3 class="subtitle">Current Weather</h3>
+                <div id="weather" class="current-weather"></div>
+              </div>
             </div>
-<!--current weather-responsive-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-4 col-xl-3">
-                        <h3 class='subtitle'>Current Weather</h3>
-                        <div id="weather" class="current-weather"></div>
-                    </div>
-                </div>
-            </div>
-<!--five day forecast-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-4 col-xl-3">
-                        <h4 class='subtitle'>Five Day Forecast</h4>
-                        <div id="forecast-container" class="five-day-list"></div>
-            </div>
+          </div>
+          <!--five day forecast-->
+
+
+          <div class="col-8-float-right mt-4">
+            <h2 class="row">Five Day Weather:</h2>
+            <div id="five-day"></div>
+            <div id="forecast-container" class="five-day-list-group"></div>
+          </div>
         </section>
-    </main>    
+      </main>
     </body>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
     <script src="assets\script.js"></script>
-</body>
+  </body>
 </html>
