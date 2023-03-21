@@ -9,9 +9,6 @@ var forecastTemp = document.getElementById("forecast-temp");
 var forecastHumidity = document.getElementById("forecast-humidity");
 var forecastIcon = document.getElementById("forecast-icon");
 var forecastWind =document.getElementById("forecast-wind");
-var weatherEl = document.getElementById("weather");
-var forecastEl = document.getElementById("forecast");
-var historyEl = document.getElementById("history");
 var searchBtn = document.getElementById("search-button");
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
@@ -91,13 +88,27 @@ function search(city) {
   // })
   // .catch(error => console.log(error));
 
+
+  $(".search-button").on("click", function () {
+    var text = $(this).siblings("#form-input").val();
+    var city = $(this).parent().attr("id")[1];
+    localStorage.setItem(city, text);
+
+  $(".search-city").each(function () {
+    var city = $(this).attr("id")[1];
+    var text = localStorage.getItem(city);
+    if (text !== null) {
+      $(this).find("#form-input").val(text);  
+  }
+
 })
     })
-  }
-    
+  })
+    })
 
 searchBtn.addEventListener("click", getApi);
-//searchBtn.addEventListener("click", getForecast);
+searchBtn.addEventListener("click", getForecast);
 window.addEventListener("load", function () {
-    window.localStorage.getItem("historyEl");
+window.localStorage.getItem("search-city");
 })
+}
