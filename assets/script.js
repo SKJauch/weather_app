@@ -16,33 +16,33 @@ var searchBtn = document.getElementById("search-button");
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
-// function getApi() {
-  
-//   var requestUrl = "api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + apiKey"
+function getApi() {
+  const searchValue = document.getElementById('search-city').value;
+  var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey;
 
  
-//   fetch(requestUrl)
-//     .then(response => response.json())
-//     .then(data => {
-//       // Process the weather data
-//       console.log(data);
-//     })
-//     .catch(error => {
-//       // Handle API request error
-//       console.error(error);
-//     });
-// }
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Process the weather data
+      console.log(data);
+    })
+    .catch(error => {
+      // Handle API request error
+      console.error(error);
+    });
+}
 
 function search(city) {
-  var latLon = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=&appid=" + apiKey;
-  fetch(latLon)
+  var searchCity = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&limit=&appid=" + apiKey;
+  fetch(searchCity)
     .then((response) => {
       return response.json();
     }).then((data) => {
         if (!data.length) {
           return alert("Please Enter City");
         }
-      return fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + data[0].lat + "&lon=" + data[0].lon + "&exclude=hourly,minutely&units=imperial&appid=" + apiKey)
+      return fetch("https://api.openweathermap.org/data/2.5/weather?q=lat=" + data[0].lat + "&lon=" + data[0].lon + "&exclude=hourly,minutely&units=imperial&appid=" + apiKey)
       .then((response) => {
         return response.json();
       }).then((data) => {
@@ -55,8 +55,8 @@ function search(city) {
         $("#currentUvi").text(" " + data.current.uvi);
 
 
-        let uvi = data.current.uvi;
-        let currentUv = $(#currentUv);
+        const currentUv = data.current.uvi;
+        //const currentUv = $(#currentUv);
         if (uvi <= 3) {
           currentUv.removeClass().addClass("green");
         } else if (uvi > 3 && uvi <= 6) {
@@ -64,28 +64,40 @@ function search(city) {
         } else if (uvi > 6 && uvi <= 10) {
           currentUv.removeClass().addClass("red");
         } else {
-          currentUv.removeClass()addClass("blue")
+          currentUv.removeClass().addClass("blue")
         }
 
-        forecastData.forEach(item => {
-          const forecastElement = document.createElement("div");
-          forecastElement.innerHTML = `
-            <div>${item.dt_txt}</div>
-            <div>${item.weather[0].description}</div>
-            <div>${item.main.temp} &deg;C</div>
-          `;
-          document.getElementById("forecast-container").appendChild(forecastElement);
-        });
-      })
-      .catch(error => console.log(error));
-
+  //       fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey)
+  // .then(response => response.json())
+  // .then(data => {
+  //   // Extract the forecast data for the next 5 days
+  //   const forecastData = data.list.filter(item => {
+  //     return item.dt_txt.includes("12:00:00");
+  //   }).slice(0, 5);
     
+  //   // Loop through the forecast data and create HTML elements to display it
+  //   forecastData.forEach(item => {
+  //     const forecastElement = document.createElement("div");
+  //     forecastElement.innerHTML = `
+  //       <div>${item.dt_txt}</div>
+  //       <div>${item.weather[0].description}</div>
+  //       <div>Temperature: ${item.main.temp} &deg;F</div>
+  //       <div>Wind Speed: ${item.wind.speed} mph</div>
+  //       <div>Humidity: ${item.main.humidity} %</div>
+  //       <div>UVI: ${item.main.uvi} </div>
+  //     `;
+  //     document.getElementById("forecast-container").appendChild(forecastElement);
+  //   });
+  // })
+  // .catch(error => console.log(error));
+
+})
     })
   }
     
 
 searchBtn.addEventListener("click", getApi);
-searchBtn.addEventListener("click", getForecast);
+//searchBtn.addEventListener("click", getForecast);
 window.addEventListener("load", function () {
     window.localStorage.getItem("historyEl");
 })
