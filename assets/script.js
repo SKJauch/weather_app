@@ -1,6 +1,9 @@
-var currentCity = document.getElementById("city")
-var currentIcon = document.getElementById("icon")
-var currentTemp = document.getElementById("current-temp")
+var currentCity = document.getElementById("city");
+var currentIcon = document.getElementById("icon");
+var currentTemp = document.getElementById("current-temp");
+var currentWind = document.getElementById("wind");
+var currentHumidity = document.getElementById("humidity");
+var currentUvi = document.getElementById("uv")
 var weatherEl = document.getElementById("weather");
 var forecastEl = document.getElementById("forecast");
 var historyEl = document.getElementById("history");
@@ -44,7 +47,10 @@ function search(city) {
         $("#currentTemp").text(" " + Math.floor(data.current.temp) + "\u0080 F");
         $("#currentWind").text(" " + data.current.wind_speed + " MPH");
         $("#currentHumidity").text(" " + data.current.humidity + "\%");
-        $("#currentUv").text(" " + data.current.uvi);
+        $("#currentUvi").text(" " + data.current.uvi);
+
+
+        
       })
     })
 }
