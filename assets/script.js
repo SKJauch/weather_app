@@ -1,3 +1,4 @@
+var cityEl = document.getElementById("city")
 var weatherEl = document.getElementById("weather");
 var forecastEl = document.getElementById("forecast");
 var historyEl = document.getElementById("history");
@@ -6,19 +7,21 @@ var searchBtn = document.getElementById("search-button");
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
 function getApi() {
-  var searchValue = document.getElementById("search-city").value;
-  var requestUrl = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+  
+  var requestUrl = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + {apiKey}";
 
+  // Make API request using fetch()
   fetch(requestUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-    $('#search-city').val('')
-  })
+    .then(response => response.json())
+    .then(data => {
+      // Process the weather data
+      console.log(data);
+    })
+    .catch(error => {
+      // Handle API request error
+      console.error(error);
+    });
 }
-
   //search temperature
   //var temp = document.createElement("div");
   //temp.textContent = "Temperature Is: " + data.main.temp + " F";
@@ -32,13 +35,13 @@ function getApi() {
     temperature.classList = "current-list-group";
     // add the temperature element to the DOM
     document.body.appendChild(temperature);
-  })
+  
   .catch(error => console.error(error));
-
+});
   //by city
-  var cityEl = document.createElement('h2');
-  cityEl.textContent = data.name;
-  cityEl.classList = "current-list-group";
+  // var cityEl = document.createElement('h2');
+  // cityEl.textContent = data.name;
+  // cityEl.classList = "current-list-group";
 
 
   //wind
