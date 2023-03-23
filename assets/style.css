@@ -1,1 +1,9 @@
-.five-day-list-group
+#forecast section {
+    border: solid black 2px;
+    padding: 4px;
+}
+
+#forecast {
+    display: flex;
+    justify-content: space-evenly; 
+}
