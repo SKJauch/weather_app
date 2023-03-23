@@ -46,6 +46,7 @@ console.log(data)
       const forecastElement = document.createElement("section");
       forecastElement.innerHTML = `
         <div>${(moment.unix(item.dt).utcOffset(item.timezone / 60).format("MM/DD/YYYY"))}</div>
+        <div><img src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png"></div>
         <div>${item.weather[0].description}</div>
         <div>Temperature: ${item.main.temp} &deg;F</div>
         <div>Wind Speed: ${item.wind.speed} mph</div>
