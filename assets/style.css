@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-evenly; 
     
+    
 }
 
 header, body {
@@ -44,4 +45,6 @@ header, body {
     font-weight: bolder;
 }
 
-.card
+.card {
+    border: solid black 4px;
+}
