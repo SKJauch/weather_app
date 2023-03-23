@@ -1,9 +1,17 @@
 #forecast section {
     border: solid black 2px;
-    padding: 4px;
+    padding: 6px;
+    background-color: blueviolet;
+    ;
 }
 
 #forecast {
     display: flex;
     justify-content: space-evenly; 
+    
 }
+
+body, header {
+    background-color: aqua;
+}
+

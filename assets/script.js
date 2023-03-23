@@ -10,8 +10,6 @@ var forecastHumidity = document.getElementById("forecast-humidity");
 var forecastIcon = document.getElementById("forecast-icon");
 var forecastWind = document.getElementById("forecast-wind");
 var searchBtn = document.getElementById("search-button");
-var searchBtn = document.querySelector("#search-btn");
-var userCitySpan = document.querySelector("#user-city")
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
