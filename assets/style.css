@@ -1,7 +1,8 @@
 #forecast section {
     border: solid black 2px;
     padding: 6px;
-    background-color: blueviolet;
+    background-color: rgb(157, 95, 214);
+    font-weight: bolder
     ;
 }
 
@@ -11,7 +12,36 @@
     
 }
 
-body, header {
+header, body {
     background-color: aqua;
 }
 
+.card-header, .subtitle {
+    background-color: rgb(81, 191, 235);
+}
+
+#search-button {
+    background-color: lightskyblue;
+}
+
+.card-body {
+    background-color: midnightblue;
+}
+
+.jumbotron {
+    background-color: powderblue;
+    
+}
+
+.current-weather-container {
+    border: solid black 3px;
+    background-color: rgb(112, 206, 230);
+    padding: 4px
+    
+}
+
+.lead {
+    font-weight: bolder;
+}
+
+.card
