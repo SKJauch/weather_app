@@ -30,6 +30,7 @@ console.log(data)
         $("#currentTemp").text(" " + Math.floor(data.main.temp) + " ° F");
         $("#currentWind").text(" " + data.wind.speed + " MPH");
         $("#currentHumidity").text(" " + data.main.humidity + "\%");
+
         
 
         fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey)
@@ -63,5 +64,5 @@ console.log(data)
 
 }
 
+
 searchBtn.addEventListener("click", getApi);
-window.localStorage.getItem("search-city");
