@@ -25,7 +25,17 @@ Recent search results will be shown on the page and when the user clicks on a pr
 
 deployed url  https://skjauch.github.io/weather_app/   
 
-Screen shot of deployed URL  
+Screen shot of deployed URL 
 
+![Home](assets\images\weather-app.png)
+
+![First Search](assets\images\weather-app-search1.png)  
+
+![Second Search](assets\images\weather-app-search2.png)
 
 github link  https://github.com/SKJauch/weather_app
+
+***UNABLE TO MEET ALL CRITERIA.  
+-I WAS NOT ABLE TO STORE PREVIOUSLY SEARCHED CITIES ON TO THE PAGE.  
+-I WAS ABLE TO SAVE PREVIOUSLY SEARCHED CITIES IN THE "SEARCH" BAR IF USER PUSHES "ENTER" KEY BEFORE CLICKING ON THE "SEARCH" BUTTON TO SEARCH.  
+-I WAS ABLE TO RENDER MULTIPLE CITY WEATHER ON ONE PAGE, BUT COULD NOT HAVE THEM RENDER WHERE OR HOW I WANTED TO.  (IF MULTIPLE SEARCHES ARE MADE, 5 DAY WEATHER SHOWS FOR ALL CITIES UNTIL REFRESH)

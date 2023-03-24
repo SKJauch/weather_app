@@ -10,6 +10,8 @@ var forecastHumidity = document.getElementById("forecast-humidity");
 var forecastIcon = document.getElementById("forecast-icon");
 var forecastWind = document.getElementById("forecast-wind");
 var searchBtn = document.getElementById("search-button");
+var cityForm = document.querySelector("#city-form");
+var cityInput = document.querySelector("#city-text");
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
 
@@ -58,14 +60,89 @@ console.log(data)
   })
   .catch(error => console.log(error));
 
+//   var cityHistory = [];
+//   var cityList = document.getElementById("city-list");
+// var cityHistoryList = document.getElementById("city-history-list");
+// var cityHistorySpan = document.getElementById("city-history-span");
+
+//   function renderCityHistory() {
+  
+//     cityHistoryList.innerHTML = "";
+//     cityHistorySpan.textContent = cityHistory.length;
+  
+//     for (var i = 0; i < cityHistory.length; i++) {
+//       var history = cityHistory[i];
+  
+//       var li = document.createElement("li");
+//       li.textContent = history;
+//       li.setAttribute("data-index", i);
+  
+//       var button = document.createElement("button");
+//       button.textContent = "Complete ✔️";
+  
+//       li.appendChild(button);
+//       cityList.appendChild(li);
+//     }
+//     }
+//   function init() {
+//     var storedCities = JSON.parse(localStorage.getItem("cityHistory"));
+  
+//     if (storedCities !== null) {
+//       cityHistory = storedCities;
+//     }
+  
+//     renderCityHistory();
+//   }
+  
+//   function storedCities() {
+//     localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+//   }
+  
+//   cityForm.addEventListener("submit", function(event) {
+//     event.preventDefault();
+  
+//     var cityText = cityInput.value.trim();
+  
+//     if (cityText === "") {
+//       return;
+//     }
+//     cityHistory.push(cityText);
+//     cityInput.value = "";
+  
+//     storedCities();
+//     renderCityHistory();
+//   });
+  
+//   cityList.addEventListener("click", function(event) {
+//     var element = event.target;
+  
+//     // Checks if element is a button
+//     if (element.matches("button") === true) {
+//       // Get its data-index value and remove the todo element from the list
+//       var index = element.parentElement.getAttribute("data-index");
+//       cityHistory.splice(index, 1);
+  
+      
+//       storedCities();
+//       renderCityHistory();
+//     }
+//   });
+  
+//   // Calls init to retrieve data and render it to the page on load
+//   init()
+  
+
+// ;
+
 
   })
-
-
-};
-
+  
+  }
+  
 
 
  
 searchBtn.addEventListener("click", getApi);
+
+
 
