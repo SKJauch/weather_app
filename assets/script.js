@@ -14,12 +14,12 @@ var cityForm = document.querySelector("#city-form");
 var cityInput = document.querySelector("#city-text");
 //apikey to make it easier
 var apiKey = "763656d325fd4ae7170f7ec265c5aef0";
-
+//connect to api and search by city
 function getApi() {
   const searchValue = document.getElementById('search-city').value;
   search(searchValue)
 }
-
+//get current weather
 function search(city) {
   
       fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&exclude=hourly,minutely&units=imperial&appid=" + apiKey)
@@ -33,7 +33,7 @@ console.log(data)
         $("#currentWind").text(" " + data.wind.speed + " MPH");
         $("#currentHumidity").text(" " + data.main.humidity + "\%");
 
-        
+        //get forecast info
 
         fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey)
   .then(response => response.json())
@@ -59,6 +59,9 @@ console.log(data)
     });
   })
   .catch(error => console.log(error));
+
+  //save to local storage 
+  //I tried to apply course lessons and ideas from TAs, tutors, classmates, I have no idea how to land this
 
 //   var cityHistory = [];
 //   var cityList = document.getElementById("city-list");
